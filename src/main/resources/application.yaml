@@ -1,4 +1,10 @@
 spring:
+  server:
+    servlet:
+      session:
+        cookie:
+          same-site: none
+          secure: true
   security:
     oauth2:
       client:
