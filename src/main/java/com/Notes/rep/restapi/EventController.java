@@ -14,7 +14,7 @@ import java.security.Principal;
 import java.util.List;
 @RestController
 @RequestMapping("/api/events")
-@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true") // Note: added allowCredentials
+// Note: added allowCredentials
 public class EventController {
 
     @Autowired
