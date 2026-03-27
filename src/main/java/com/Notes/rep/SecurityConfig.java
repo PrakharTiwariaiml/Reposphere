@@ -35,7 +35,7 @@ public class SecurityConfig {
                 )
                 .oauth2Login(oauth -> oauth
                         .userInfoEndpoint(info -> info.userService(oauth2UserService))
-                        .defaultSuccessUrl("http://localhost:5173/", true)
+                        .defaultSuccessUrl("https://repo-weld-nu-72.vercel.app/", true)
                 );
 
         return http.build();
@@ -44,7 +44,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOriginPatterns(List.of("http://localhost:5173"));
+        config.setAllowedOriginPatterns(List.of("https://repo-weld-nu-72.vercel.app"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
         config.setAllowCredentials(true); // Required for JSESSIONID cookies
