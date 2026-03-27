@@ -1,13 +1,35 @@
 spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${CLIENT_ID}
+            client-secret: ${CLIENT_SECRET}
+            scope:
+              - profile
+              - email
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
   application:
     name: rep
+  servlet:
+    multipart:
+      # Max file size for a single file (e.g., 10MB)
+      max-file-size: 100MB
+      # Max total request size for the entire form (e.g., 10MB)
+      max-request-size: 200MB
   datasource:
-    url: jdbc:postgresql://aws-1-ap-northeast-1.pooler.supabase.com:6543/postgres?user=postgres.zhojcrwaspezcblfeoen&password=?${DB_PASSWORD}
+    url: ${DB_URL}
+    user: ${DB_USER}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
 server:
-  port: 8082
+  port: ${PORT:8080}
 
+CLOUDINARY_NAME: ${CLOUDINARY_NAME}
+CLOUDINARY_API_KEY: ${CLOUDINARY_API_KEY}
+CLOUDINARY_API_SECRET: ${CLOUDINARY_API_SECRET}

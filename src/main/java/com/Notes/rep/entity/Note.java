@@ -1,5 +1,8 @@
 package com.Notes.rep.entity;
 
+import com.Notes.rep.entity.Folder;
+import com.Notes.rep.entity.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -11,11 +14,21 @@ public class Note {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-    private String fileUrl; // The link to the actual PDF/Image
-    private boolean isPublic; // true = everyone, false = private
+    @Column(nullable = false)
+    private String fileUrl;
 
-    @ManyToOne // Connects this note to a specific Student
+    private String title;
+
+    @Column(name = "cloudinary_public_id")
+    private String publicId; // Stores the Cloudinary ID for deletion
+
+    @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User owner;
+
+    @ManyToOne
+    @JoinColumn(name = "folder_id")
+    @JsonIgnore
+    private Folder folder;
 }
