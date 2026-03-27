@@ -27,6 +27,7 @@ spring:
     show-sql: true
 server:
   port: ${PORT:8080}
+  forward-headers-strategy: framework
 
 CLOUDINARY_NAME: ${CLOUDINARY_NAME}
 CLOUDINARY_API_KEY: ${CLOUDINARY_API_KEY}
