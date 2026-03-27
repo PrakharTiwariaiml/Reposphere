@@ -35,6 +35,9 @@ public class SecurityConfig {
                 )
                 .oauth2Login(oauth -> oauth
                         .userInfoEndpoint(info -> info.userService(oauth2UserService))
+                        .authorizationEndpoint(authorization -> authorization
+                                .baseUri("/oauth2/authorization")
+                        )
                         .defaultSuccessUrl("https://repo-weld-nu-72.vercel.app/", true)
                 );
 
