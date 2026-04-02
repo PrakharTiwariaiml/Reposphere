@@ -24,20 +24,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                // 1. MUST BE FIRST: Process CORS before any security checks
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                .csrf(csrf -> csrf.disable())
+                .csrf(csrf -> csrf.disable()) // Note: Disable only if not using Cookies for CSRF
                 .authorizeHttpRequests(auth -> auth
-                        // 2. Allow all OPTIONS requests (Preflights) to bypass security
-                        .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
-                        .requestMatchers("/login/**", "/oauth2/**").permitAll()
+                        .requestMatchers("/login/**", "/oauth2/**", "/error").permitAll()
                         .anyRequest().authenticated()
                 )
                 .oauth2Login(oauth -> oauth
                         .userInfoEndpoint(info -> info.userService(oauth2UserService))
-                        .authorizationEndpoint(authorization -> authorization
-                                .baseUri("/oauth2/authorization")
-                        )
                         .defaultSuccessUrl("https://repo-weld-nu-72.vercel.app/", true)
                 );
 
