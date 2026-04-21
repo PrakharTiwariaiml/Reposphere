@@ -32,7 +32,8 @@ public class SecurityConfig {
                 )
                 .oauth2Login(oauth -> oauth
                         .userInfoEndpoint(info -> info.userService(oauth2UserService))
-                        .defaultSuccessUrl("https://repo-weld-nu-72.vercel.app/", true)
+                        // LOCAL DEV: redirect to local frontend after Google login
+                        .defaultSuccessUrl("http://localhost:5173/dashboard", true)
                 );
 
         return http.build();
@@ -42,7 +43,10 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         // CRITICAL: Ensure NO trailing slash at the end of the URL
-        config.setAllowedOrigins(List.of("https://repo-weld-nu-72.vercel.app"));
+        config.setAllowedOrigins(List.of(
+                "http://localhost:5173",
+                "https://repo-weld-nu-72.vercel.app"
+        ));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Requested-With", "Cache-Control"));
         config.setAllowCredentials(true);

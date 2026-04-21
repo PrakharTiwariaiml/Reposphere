@@ -12,10 +12,10 @@ spring:
           google:
             client-id: ${CLIENT_ID}
             client-secret: ${CLIENT_SECRET}
-            scope:
-              - profile
-              - email
-            redirect-uri: "https://reposphere-vz6f.onrender.com/login/oauth2/code/google"
+#            scope:
+#              - profile
+#              - email
+#            redirect-uri: "https://reposphere-vz6f.onrender.com/login/oauth2/code/google"
     name: rep
   servlet:
     multipart:
@@ -31,7 +31,7 @@ spring:
       ddl-auto: update
     show-sql: true
 server:
-  port: ${PORT:8080}
+  port: ${PORT:8082}
   forward-headers-strategy: framework
   tomcat:
     remote-ip-header: x-forwarded-for
