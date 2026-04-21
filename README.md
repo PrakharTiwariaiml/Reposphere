@@ -39,3 +39,10 @@ Reposphere utilizes a **Neo-Brutalist** UI—characterized by bold borders, high
 
 ---
 
+## Contributors
+
+- [Prakhar Tiwari](http://github.com/PrakharTiwariaiml)
+- [Krishna Verma](https://github.com/Krishnaverma1-git)
+
+
+---
